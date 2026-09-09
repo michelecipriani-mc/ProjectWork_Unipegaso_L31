@@ -14,7 +14,7 @@ async function caricaPagina() {
   const pages = {
     home: "pages/home.html",
     "chi-siamo": "pages/chi-siamo.html",
-    contatti: "pages/contatti.html"
+    sostenibilita: "pages/sostenibilita.html"
   };
 
   const percorso = pages[rotta] || pages.home;
