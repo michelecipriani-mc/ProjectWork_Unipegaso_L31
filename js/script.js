@@ -9,6 +9,7 @@ function misuraOffsetHeader() {
   document.documentElement.style.setProperty('--navbar-h', `${navbarH}px`);
 }
 
+/* ---------- Gestione Banner: se chiuso, la navbar sale in top:0 ---------- */
 function initNavbarBehavior() {
   const banner = document.getElementById('thesisBanner');
   const closeBanner = document.getElementById('closeBanner');
@@ -22,6 +23,20 @@ function initNavbarBehavior() {
   window.addEventListener('resize', misuraOffsetHeader);
 }
 
+/* ---------- Form newsletter nel footer (demo: nessun invio reale) ---------- */
+function initFooterInteractions() {
+  const form = document.getElementById('newsletterForm');
+  const nota = document.getElementById('newsletterNote');
+  if (!form) return;
+
+  form.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+    form.reset();
+    nota.hidden = false;
+  });
+}
+
+/* ---------- Evidenzia nella navbar il link corrispondente alla rotta corrente ---------- */
 function setActiveNavLink(rottaCorrente) {
 
   const rotta = rottaCorrente === 'report' ? 'sostenibilita' : rottaCorrente;
@@ -33,7 +48,42 @@ function setActiveNavLink(rottaCorrente) {
   });
 }
 
-/* ---------- avvio interazioni della pagina appena caricata ---------- */
+let gestoreScrollNavbar = null;
+
+function initNavbarAppearance(rotta) {
+  const nav = document.querySelector('#navbar .navbar');
+  const contenuto = document.getElementById('contenuto');
+  if (!nav || !contenuto) return;
+
+  // Rimuove un eventuale listener lasciato da una precedente visita alla home
+  if (gestoreScrollNavbar) {
+    window.removeEventListener('scroll', gestoreScrollNavbar);
+    window.removeEventListener('resize', gestoreScrollNavbar);
+    gestoreScrollNavbar = null;
+  }
+
+  if (rotta !== 'home') {
+    // Pagine interne: navbar non trasparente, gestione contenuto
+    contenuto.classList.add('with-navbar-offset');
+    nav.classList.remove('navbar-transparent');
+    return;
+  }
+
+  contenuto.classList.remove('with-navbar-offset');
+
+  const hero = contenuto.querySelector('.hero');
+
+  gestoreScrollNavbar = () => {
+    const soglia = Math.max((hero?.offsetHeight || 0) - nav.offsetHeight, 0);
+    nav.classList.toggle('navbar-transparent', window.scrollY < soglia);
+  };
+
+  gestoreScrollNavbar();
+  window.addEventListener('scroll', gestoreScrollNavbar, { passive: true });
+  window.addEventListener('resize', gestoreScrollNavbar);
+}
+
+/* ---------- avvia le interazioni della pagina appena caricata ---------- */
 function initPageInteractions() {
   const contenuto = document.getElementById('contenuto');
   if (!contenuto) return;
@@ -102,4 +152,5 @@ function initPageInteractions() {
 
 window.initNavbarBehavior = initNavbarBehavior;
 window.setActiveNavLink = setActiveNavLink;
+window.initNavbarAppearance = initNavbarAppearance;
 window.initPageInteractions = initPageInteractions;

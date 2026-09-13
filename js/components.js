@@ -29,8 +29,14 @@ async function caricaPagina(rottaForzata) {
     ? await risposta.text()
     : "<h1>Pagina non trovata</h1>";
 
-  window.setActiveNavLink?.(rotta in pages ? rotta : "home");
+  // Evidenzia il link corretto nella navbar
+  const rottaNormalizzata = rotta in pages ? rotta : "home";
+  window.setActiveNavLink?.(rottaNormalizzata);
 
+  // Navbar trasparente solo in home (si colora dopo l'hero)
+  window.initNavbarAppearance?.(rottaNormalizzata);
+
+  // Riavvia le interazioni (reveal on scroll, contatori KPI)
   window.initPageInteractions?.();
 
   if (rottaForzata) {
@@ -39,6 +45,7 @@ async function caricaPagina(rottaForzata) {
 
   document.getElementById(rotta)?.scrollIntoView({ behavior: "smooth" });
 
+  // Chiude il menu laterale dopo aver scelto una pagina
   const offcanvasElement = document.getElementById("offcanvasNavbar");
 
   if (offcanvasElement) {
@@ -52,6 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   window.initNavbarBehavior?.();
 
   await caricaComponente("footer", "components/footer.html");
+  window.initFooterInteractions?.();
 
   await caricaPagina(rottaIniziale);
 });
