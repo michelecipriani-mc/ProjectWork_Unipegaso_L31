@@ -71,10 +71,10 @@ function initNavbarAppearance(rotta) {
 
   contenuto.classList.remove('with-navbar-offset');
 
-  const hero = contenuto.querySelector('.hero');
+  const h = contenuto.querySelector('.h');
 
   gestoreScrollNavbar = () => {
-    const soglia = Math.max((hero?.offsetHeight || 0) - nav.offsetHeight, 0);
+    const soglia = Math.max((h?.offsetHeight || 0) - nav.offsetHeight, 0);
     nav.classList.toggle('navbar-transparent', window.scrollY < soglia);
   };
 

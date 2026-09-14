@@ -343,8 +343,8 @@ main#contenuto.with-navbar-offset {
   width: 100%;
 }
 
-/* ---------- Hero ---------- */
-.hero {
+/* ---------- Header home ---------- */
+.h {
   position: relative;
   min-height: 92vh;
   display: flex;
@@ -354,17 +354,18 @@ main#contenuto.with-navbar-offset {
   padding-top: calc(var(--navbar-h, 56px) + 20px);
 }
 
-.hero-bg {
+.h-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 15% 20%, rgba(201, 162, 39, .35), transparent 45%),
-    radial-gradient(circle at 85% 80%, rgba(74, 106, 86, .4), transparent 50%),
-    linear-gradient(160deg, var(--wine-900) 0%, var(--wine-700) 55%, var(--green-700) 130%);
+    radial-gradient(circle at 15% 20%, rgba(201, 162, 39, .22), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(74, 106, 86, .25), transparent 50%),
+    linear-gradient(160deg, rgba(61, 15, 31, .5) 0%, rgba(107, 30, 60, .38) 55%, rgba(49, 70, 58, .28) 130%),
+    url('img img/img_header.jpg') center / cover no-repeat;
   z-index: -1;
 }
 
-.hero-bg::after {
+.h-bg::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -380,32 +381,34 @@ main#contenuto.with-navbar-offset {
   margin-bottom: 14px;
 }
 
-.hero h1 {
+.h h1 {
   font-size: clamp(2.2rem, 5vw, 3.6rem);
   max-width: 14ch;
   margin-bottom: 22px;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .45);
 }
 
-.hero h1 em {
+.h h1 em {
   color: var(--gold-300);
   font-style: normal;
 }
 
-.hero-lede {
+.h-lede {
   max-width: 52ch;
   font-size: 1.08rem;
-  color: rgba(255, 255, 255, .86);
+  color: rgba(255, 255, 255, .92);
   margin-bottom: 34px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .4);
 }
 
-.hero-cta {
+.h-cta {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 56px;
 }
 
-.hero-stats {
+.h-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
@@ -414,17 +417,19 @@ main#contenuto.with-navbar-offset {
   padding-top: 26px;
 }
 
-.hero-stats dt {
+.h-stats dt {
   font-family: var(--font-display);
   font-size: 1.6rem;
   color: var(--gold-300);
   font-weight: 700;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
 }
 
-.hero-stats dd {
+.h-stats dd {
   margin: 4px 0 0;
   font-size: .78rem;
-  color: rgba(255, 255, 255, .75);
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .45);
 }
 
 .scroll-cue {
