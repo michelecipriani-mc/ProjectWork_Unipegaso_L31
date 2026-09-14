@@ -361,7 +361,7 @@ main#contenuto.with-navbar-offset {
     radial-gradient(circle at 15% 20%, rgba(201, 162, 39, .22), transparent 45%),
     radial-gradient(circle at 85% 80%, rgba(74, 106, 86, .25), transparent 50%),
     linear-gradient(160deg, rgba(61, 15, 31, .5) 0%, rgba(107, 30, 60, .38) 55%, rgba(49, 70, 58, .28) 130%),
-    url('img img/img_header.jpg') center / cover no-repeat;
+    url('../img/img_header.jpg') center / cover no-repeat;
   z-index: -1;
 }
 
